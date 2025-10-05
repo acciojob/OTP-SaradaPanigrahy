@@ -1,20 +1,20 @@
-//your JS code here. If required.
-    const inputs = document.querySelectorAll(".code");
+const codes = document.querySelectorAll('.code');
 
-    inputs.forEach((input, index) => {
-      input.addEventListener("input", (e) => {
+    // Automatically move to next input after typing a number
+    codes.forEach((input, idx) => {
+      input.addEventListener('input', (e) => {
         const value = e.target.value;
-        if (value.length === 1 && index < inputs.length - 1) {
-          inputs[index + 1].focus();
+        if (value && idx < codes.length - 1) {
+          codes[idx + 1].focus();
         }
       });
 
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "Backspace") {
-          if (input.value === "" && index > 0) {
-            inputs[index - 1].focus();
-            inputs[index - 1].value = "";
-          }
+      input.addEventListener('keydown', (e) => {
+        if (e.key === "Backspace" && !e.target.value && idx > 0) {
+          codes[idx - 1].focus();
         }
       });
     });
+
+    // Ensure first input is focused when page loads
+    document.getElementById('code-1').focus();
